@@ -5,6 +5,8 @@ mod printing;
 mod variables;
 mod date_types;
 
+use std::io;
+
 fn main() {
     printing::main();
     if_else::main();
@@ -14,8 +16,21 @@ fn main() {
     let hello = "Hello from calc.rs!";
     println!("\n{}\n{}", hello, "-".repeat(hello.len()));
 
-    let num1 = 10;
-    let num2 = 2;
+    println!("Enter the first number");
+    let mut num1 = String::new();
+    io::stdin()
+        .read_line(&mut num1)
+        .expect("Failed to read line");
+    let num1: i32 = num1.trim().parse().expect("Please type a number!");
+
+    
+    println!("Enter the second number");
+    let mut num2 = String::new();
+    io::stdin()
+        .read_line(&mut num2)
+        .expect("Failed to read line");
+    let num2: i32 = num2.trim().parse().expect("Please type a number!");
+
 
     let mut output = calc::add(&num1, &num2);
     println!("Adding: {}", output);
